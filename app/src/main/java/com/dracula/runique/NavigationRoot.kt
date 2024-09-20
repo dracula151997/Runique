@@ -1,6 +1,5 @@
 package com.dracula.runique
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -11,6 +10,7 @@ import com.dracula.auth.presentation.intro.IntroScreenRoot
 import com.dracula.auth.presentation.login.LoginScreenRoot
 import com.dracula.auth.presentation.register.RegisterScreenRoot
 import com.dracula.core.presentation.ui.NavigationScreen
+import com.dracula.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
 fun NavigationRoot(
@@ -97,7 +97,7 @@ private fun NavGraphBuilder.runGraph(
 		route = NavigationScreen.RUN_GRAPH
 	) {
 		composable(route = NavigationScreen.Run.RUN) {
-			Text(text = "Run")
+			RunOverviewScreenRoot()
 		}
 	}
 }
