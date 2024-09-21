@@ -1,18 +1,17 @@
 package com.dracula.run.presentation.run_overview
 
-import android.view.View
 import androidx.lifecycle.ViewModel
 
-class RunOverviewViewModel : ViewModel(){
-	fun onAction(action: RunOverviewAction){
-		when(action){
-			RunOverviewAction.OnStartClick -> TODO()
+class RunOverviewViewModel : ViewModel() {
+	fun onAction(action: RunOverviewAction) {
+		when (action) {
 			RunOverviewAction.OnLogoutClick -> TODO()
 			RunOverviewAction.OnAnalyticsClick -> TODO()
+			else -> Unit
 		}
 	}
 
-	private fun onStartClick(){
+	private fun onStartClick() {
 
 	}
 }

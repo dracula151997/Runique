@@ -10,6 +10,7 @@ import com.dracula.auth.presentation.intro.IntroScreenRoot
 import com.dracula.auth.presentation.login.LoginScreenRoot
 import com.dracula.auth.presentation.register.RegisterScreenRoot
 import com.dracula.core.presentation.ui.NavigationScreen
+import com.dracula.run.presentation.active_run.ActiveRunScreenRoot
 import com.dracula.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -97,7 +98,14 @@ private fun NavGraphBuilder.runGraph(
 		route = NavigationScreen.RUN_GRAPH
 	) {
 		composable(route = NavigationScreen.Run.RUN) {
-			RunOverviewScreenRoot()
+			RunOverviewScreenRoot(
+				onStartClick = {
+					navController.navigate(NavigationScreen.Run.ACTIVE_RUN)
+				}
+			)
+		}
+		composable(route = NavigationScreen.Run.ACTIVE_RUN) {
+			ActiveRunScreenRoot()
 		}
 	}
 }

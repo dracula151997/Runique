@@ -10,5 +10,6 @@ object NavigationScreen {
 	}
 	object Run {
 		const val RUN = "home"
+		const val ACTIVE_RUN = "active_run"
 	}
 }
