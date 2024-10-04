@@ -30,6 +30,7 @@ import com.dracula.core.presentation.designsystem.components.RuniqueOutlinedActi
 import com.dracula.core.presentation.designsystem.components.RuniqueToolbar
 import com.dracula.run.presentation.R
 import com.dracula.run.presentation.active_run.components.RunDataCard
+import com.dracula.run.presentation.active_run.maps.TrackerMap
 import com.dracula.run.presentation.utils.hasLocationPermission
 import com.dracula.run.presentation.utils.hasNotificationPermission
 import com.dracula.run.presentation.utils.shouldShowLocationPermissionRotational
@@ -131,6 +132,13 @@ private fun ActiveRunScreen(
 				.fillMaxSize()
 				.background(color = MaterialTheme.colorScheme.surface)
 		) {
+			TrackerMap(
+				isRunFinished = state.isRunFinished,
+				currentLocation = state.currentLocation,
+				locations = state.runData.locations,
+				onSnapshot = {},
+				modifier = Modifier.fillMaxSize()
+			)
 			RunDataCard(
 				elapsedTime = state.elapsedTime,
 				runData = state.runData,
