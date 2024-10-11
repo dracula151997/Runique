@@ -29,8 +29,10 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.MarkerComposable
+import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberMarkerState
+import timber.log.Timber
 
 @Composable
 fun TrackerMap(
@@ -45,7 +47,7 @@ fun TrackerMap(
 		MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style)
 	}
 	val cameraPositionState = rememberCameraPositionState()
-	val markerState = rememberMarkerState()
+	val markerState = MarkerState()
 
 	val marketPositionLat by animateFloatAsState(
 		targetValue = currentLocation?.latitude?.toFloat() ?: 0f,
@@ -58,7 +60,7 @@ fun TrackerMap(
 		animationSpec = tween(durationMillis = 500)
 	)
 	val marketPosition =
-		remember { LatLng(marketPositionLat.toDouble(), marketPositionLong.toDouble()) }
+		remember(marketPositionLat, marketPositionLong) { LatLng(marketPositionLat.toDouble(), marketPositionLong.toDouble()) }
 
 	LaunchedEffect(marketPosition, isRunFinished) {
 		if (!isRunFinished) {
@@ -81,8 +83,10 @@ fun TrackerMap(
 		),
 		uiSettings = MapUiSettings(
 			zoomControlsEnabled = false
-		)
+		),
+		cameraPositionState = cameraPositionState,
 	) {
+		RuniquePolylines(locations = locations)
 		if (!isRunFinished && currentLocation != null) {
 			MarkerComposable(
 				currentLocation,

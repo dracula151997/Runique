@@ -31,7 +31,7 @@ object LocationDataCalculator {
 		return locations
 			.sumOf { timestampsPerLine ->
 				timestampsPerLine.zipWithNext { location1, location2 ->
-					location1.locationWithAltitude.location.distanceTo(location2.locationWithAltitude.location)
+					location1.location.location.distanceTo(location2.location.location)
 				}.sum().roundToInt()
 			}
 	}

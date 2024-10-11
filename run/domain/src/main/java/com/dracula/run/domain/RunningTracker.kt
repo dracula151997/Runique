@@ -100,7 +100,7 @@ class RunningTracker(
 					emit(location)
 				}
 			}.zip(_elapsedTime) { location, elapsedTime ->
-				LocationTimestamp(locationWithAltitude = location, durationTimestamp = elapsedTime)
+				LocationTimestamp(location = location, durationTimestamp = elapsedTime)
 			}.onEach { location ->
 				val currentLocations = runData.value.locations
 				val lastLocationList = if (currentLocations.isNotEmpty()) {

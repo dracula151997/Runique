@@ -1,5 +1,6 @@
 package com.dracula.run.presentation.active_run
 
+import androidx.compose.material3.TimeInput
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import timber.log.Timber
 
 class ActiveRunViewModel(
 	private val runningTracker: RunningTracker,
