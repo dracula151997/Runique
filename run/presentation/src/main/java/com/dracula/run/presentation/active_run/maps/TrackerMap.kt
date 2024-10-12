@@ -61,7 +61,6 @@ fun TrackerMap(
 	)
 	val marketPosition =
 		remember(marketPositionLat, marketPositionLong) { LatLng(marketPositionLat.toDouble(), marketPositionLong.toDouble()) }
-
 	LaunchedEffect(marketPosition, isRunFinished) {
 		if (!isRunFinished) {
 			markerState.position = marketPosition

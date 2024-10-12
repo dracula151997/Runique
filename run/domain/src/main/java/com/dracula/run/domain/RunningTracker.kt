@@ -75,6 +75,17 @@ class RunningTracker(
 		 * application is active.
 		 */
 		isTracking
+			.onEach { isTracking ->
+				if (!isTracking){
+					val newList = buildList {
+						addAll(runData.value.locations)
+						add(emptyList<LocationTimestamp>())
+					}.toList()
+					_runData.update {
+						it.copy(locations = newList)
+					}
+				}
+			}
 			.flatMapLatest { isTracking ->
 				if (isTracking) {
 					Timer.timeAndEmit()

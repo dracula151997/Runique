@@ -24,6 +24,7 @@ import com.dracula.core.presentation.designsystem.RuniqueScaffold
 import com.dracula.core.presentation.designsystem.RuniqueTheme
 import com.dracula.core.presentation.designsystem.StartIcon
 import com.dracula.core.presentation.designsystem.StopIcon
+import com.dracula.core.presentation.designsystem.components.RuniqueActionButton
 import com.dracula.core.presentation.designsystem.components.RuniqueDialog
 import com.dracula.core.presentation.designsystem.components.RuniqueFloatingActionButton
 import com.dracula.core.presentation.designsystem.components.RuniqueOutlinedActionButton
@@ -148,6 +149,35 @@ private fun ActiveRunScreen(
 			)
 		}
 
+	}
+	if (!state.shouldTrack && state.hasStartedRunning) {
+		RuniqueDialog(
+			title = stringResource(R.string.running_is_paused),
+			onDismiss = {
+				onAction(ActiveRunAction.OnResumeRunClick)
+			},
+			description = stringResource(R.string.resume_or_finish_run),
+			primaryButton = {
+				RuniqueActionButton(
+					text = stringResource(R.string.resume),
+					isLoading = false,
+					onClick = {
+						onAction(ActiveRunAction.OnResumeRunClick)
+					},
+					modifier = Modifier.weight(1f)
+				)
+			},
+			secondaryButton = {
+				RuniqueOutlinedActionButton(
+					text = stringResource(R.string.finish),
+					isLoading = state.isSavingRun,
+					onClick = {
+						onAction(ActiveRunAction.OnFinishRunClick)
+					},
+					modifier = Modifier.weight(1f)
+				)
+			}
+		)
 	}
 	if (state.showLocationRotational || state.showNotificationRotational) {
 		RuniqueDialog(
