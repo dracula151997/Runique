@@ -7,12 +7,17 @@ import kotlin.math.roundToInt
 import kotlin.time.Duration
 
 @SuppressLint("DefaultLocale")
+/**
+ * Formats the duration as a string in the format "HH:mm:ss".
+ *
+ * @return A string representing the duration in hours, minutes, and seconds.
+ */
 fun Duration.formatted(): String {
-	val totalSeconds = inWholeSeconds
-	val hours = String.format("%02d", totalSeconds / 3600)
-	val minutes = String.format("%02d", (totalSeconds % 3600) / 60)
-	val seconds = String.format("%02d", totalSeconds % 60)
-	return "$hours:$minutes:$seconds"
+    val totalSeconds = inWholeSeconds
+    val hours = String.format("%02d", totalSeconds / 3600)
+    val minutes = String.format("%02d", (totalSeconds % 3600) / 60)
+    val seconds = String.format("%02d", totalSeconds % 60)
+    return "$hours:$minutes:$seconds"
 }
 
 /**

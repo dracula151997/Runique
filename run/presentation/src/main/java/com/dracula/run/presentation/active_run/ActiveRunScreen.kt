@@ -32,6 +32,7 @@ import com.dracula.core.presentation.designsystem.components.RuniqueToolbar
 import com.dracula.run.presentation.R
 import com.dracula.run.presentation.active_run.components.RunDataCard
 import com.dracula.run.presentation.active_run.maps.TrackerMap
+import com.dracula.run.presentation.active_run.service.ActiveRunService
 import com.dracula.run.presentation.utils.hasLocationPermission
 import com.dracula.run.presentation.utils.hasNotificationPermission
 import com.dracula.run.presentation.utils.shouldShowLocationPermissionRotational
@@ -40,11 +41,13 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ActiveRunScreenRoot(
+	onServiceToggle: (shouldServiceRun: Boolean) -> Unit,
 	viewModel: ActiveRunViewModel = koinViewModel(),
 ) {
 	ActiveRunScreen(
 		state = viewModel.state,
-		onAction = viewModel::onAction
+		onAction = viewModel::onAction,
+		onServiceToggle = onServiceToggle
 	)
 }
 
@@ -52,6 +55,7 @@ fun ActiveRunScreenRoot(
 @Composable
 private fun ActiveRunScreen(
 	state: ActiveRunState,
+	onServiceToggle: (isServiceRunning: Boolean) -> Unit,
 	onAction: (ActiveRunAction) -> Unit,
 ) {
 	val context = LocalContext.current
@@ -101,6 +105,16 @@ private fun ActiveRunScreen(
 		)
 		if (!showLocationRotational && !showNotificationRotational) {
 			permissionLauncher.requestRuniquePermissions(context)
+		}
+	}
+	LaunchedEffect(key1 = state.shouldTrack) {
+		if (context.hasLocationPermission() && state.shouldTrack && !ActiveRunService.isServiceRunning) {
+			onServiceToggle(true)
+		}
+	}
+	LaunchedEffect(key1 = state.isRunFinished) {
+		if (state.isRunFinished) {
+			onServiceToggle(false)
 		}
 	}
 	RuniqueScaffold(
@@ -232,7 +246,8 @@ private fun ActiveRunScreenPreview() {
 	RuniqueTheme {
 		ActiveRunScreen(
 			state = ActiveRunState(),
-			onAction = {}
+			onAction = {},
+			onServiceToggle = {}
 		)
 	}
 }

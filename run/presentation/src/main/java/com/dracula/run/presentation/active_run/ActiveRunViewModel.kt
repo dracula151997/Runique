@@ -1,6 +1,5 @@
 package com.dracula.run.presentation.active_run
 
-import androidx.compose.material3.TimeInput
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,6 +7,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dracula.run.domain.RunningTracker
+import com.dracula.run.presentation.active_run.service.ActiveRunService
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -17,12 +17,16 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
-import timber.log.Timber
 
 class ActiveRunViewModel(
 	private val runningTracker: RunningTracker,
 ) : ViewModel() {
-	var state by mutableStateOf(ActiveRunState())
+	var state by mutableStateOf(
+		ActiveRunState(
+			shouldTrack = ActiveRunService.isServiceRunning && runningTracker.isTracking.value,
+			hasStartedRunning = ActiveRunService.isServiceRunning
+		)
+	)
 		private set
 
 	private val eventChannel = Channel<ActiveRunEvent>()
@@ -150,6 +154,13 @@ class ActiveRunViewModel(
 				showLocationRotational = false,
 				showNotificationRotational = false
 			)
+		}
+	}
+
+	override fun onCleared() {
+		super.onCleared()
+		if (!ActiveRunService.isServiceRunning) {
+			runningTracker.stopObservingLocation()
 		}
 	}
 }
