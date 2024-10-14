@@ -7,17 +7,17 @@ import kotlin.math.roundToInt
 import kotlin.time.Duration
 
 @SuppressLint("DefaultLocale")
-/**
- * Formats the duration as a string in the format "HH:mm:ss".
- *
- * @return A string representing the duration in hours, minutes, and seconds.
- */
+		/**
+		 * Formats the duration as a string in the format "HH:mm:ss".
+		 *
+		 * @return A string representing the duration in hours, minutes, and seconds.
+		 */
 fun Duration.formatted(): String {
-    val totalSeconds = inWholeSeconds
-    val hours = String.format("%02d", totalSeconds / 3600)
-    val minutes = String.format("%02d", (totalSeconds % 3600) / 60)
-    val seconds = String.format("%02d", totalSeconds % 60)
-    return "$hours:$minutes:$seconds"
+	val totalSeconds = inWholeSeconds
+	val hours = String.format("%02d", totalSeconds / 3600)
+	val minutes = String.format("%02d", (totalSeconds % 3600) / 60)
+	val seconds = String.format("%02d", totalSeconds % 60)
+	return "$hours:$minutes:$seconds"
 }
 
 /**
@@ -39,6 +39,14 @@ fun Duration.toFormattedPace(distanceKm: Double): String {
 
 fun Double.toFormattedKm(): String {
 	return "${this.roundToDecimals(1)} km"
+}
+
+fun Int.toFormattedMeters(): String {
+	return "$this m"
+}
+
+fun Double.toFormattedKmh(): String {
+	return "${roundToDecimals(1)} km/h"
 }
 
 private fun Double.roundToDecimals(decimalCount: Int): Double {

@@ -5,6 +5,9 @@ plugins {
 
 android {
 	namespace = "com.dracula.run.presentation"
+	compileOptions {
+		isCoreLibraryDesugaringEnabled = true
+	}
 }
 
 dependencies {
@@ -16,4 +19,5 @@ dependencies {
 
 	implementation(projects.core.domain)
 	implementation(projects.run.domain)
+	coreLibraryDesugaring(libs.desugar.jdk.libs.v1010)
 }
