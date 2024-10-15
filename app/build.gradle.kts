@@ -12,6 +12,9 @@ android {
 		vectorDrawables {
 			useSupportLibrary = true
 		}
+		compileOptions {
+			isCoreLibraryDesugaringEnabled = true
+		}
 	}
 
 	packaging {
@@ -79,4 +82,6 @@ dependencies {
 	implementation(projects.run.data)
 	implementation(projects.run.location)
 	implementation(projects.run.network)
+
+	coreLibraryDesugaring(libs.desugar.jdk.libs)
 }

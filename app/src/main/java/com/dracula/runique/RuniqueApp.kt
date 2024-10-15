@@ -3,6 +3,7 @@ package com.dracula.runique
 import android.app.Application
 import com.dracula.auth.data.authDataModule
 import com.dracula.auth.presentation.di.authViewModelModule
+import com.dracula.core.database.databaseModule
 import com.dracula.core.di.coreDataModule
 import com.dracula.run.location.di.locationModule
 import com.dracula.run.presentation.di.runPresentationModule
@@ -30,7 +31,8 @@ class RuniqueApp : Application(){
 				authViewModelModule,
 				coreDataModule,
 				runPresentationModule,
-				locationModule
+				locationModule,
+				databaseModule
 			)
 		}
 	}
