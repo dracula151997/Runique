@@ -26,7 +26,7 @@ data class Location(
 	 * - Δλ is the difference between the longitudes,
 	 * - R is the Earth's radius (mean radius = 6,371,000 meters).
 	 *
-	 * @param location The other location to which the distance is calculated.
+	 * @param other The other location to which the distance is calculated.
 	 * @return The distance in meters between this location and the specified location.
 	 *
 	 * @sample
@@ -41,11 +41,11 @@ data class Location(
 	 * val distance = loc1.distanceTo(loc2)
 	 * // distance: 367,603.2 meters (approximately)
 	 */
-	fun distanceTo(location: Location): Float {
+	fun distanceTo(other: Location): Float {
 		val lat1 = Math.toRadians(latitude)
 		val lon1 = Math.toRadians(longitude)
-		val lat2 = Math.toRadians(location.latitude)
-		val lon2 = Math.toRadians(location.longitude)
+		val lat2 = Math.toRadians(other.latitude)
+		val lon2 = Math.toRadians(other.longitude)
 
 		val dLat = lat2 - lat1
 		val dLon = lon2 - lon1

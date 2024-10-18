@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.runBlocking
 import kotlin.math.roundToInt
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.ZERO
 import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -155,6 +156,13 @@ class RunningTracker(
 	fun stopObservingLocation() {
 		isObservingLocation.value = false
 	}
+
+	fun finishRun(){
+		stopObservingLocation()
+		stopTracking()
+		_elapsedTime.value = ZERO
+		_runData.value = RunData()
+	}
 }
 
 /**
@@ -184,32 +192,4 @@ private fun <T> List<List<T>>.replaceLast(replacement: List<T>): List<List<T>> {
 		return listOf(replacement)
 	}
 	return dropLast(1) + listOf(replacement)
-}
-
-fun main() = runBlocking {
-	val flow1 = flowOf(1, 2, 3, 4)
-	val flow2 = flowOf(5, 6, 7)
-	flow1.zip(flow2) { a, b ->
-		a + b
-	}.collect {
-		println("Zip operator: $it")
-	}
-	flow1.combine(flow2) { a, b ->
-		a + b
-	}.collect {
-		println("Combine operator: $it")
-
-	}
-
-	flow1.combineTransform(flow2) { a, b ->
-		emit(a + b)
-	}.collect {
-		println("CombineTransform operator: $it")
-	}
-
-	val list1 = listOf(listOf(1, 2), listOf(3, 4))
-	val replacementList = listOf(5, 6)
-	val replaceLast = list1.replaceLast(replacementList)
-	println(replaceLast)
-
 }

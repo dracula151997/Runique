@@ -7,11 +7,14 @@ sealed interface ActiveRunAction {
 	data object OnBackClick : ActiveRunAction
 	data class SubmitLocationPermissionInfo(
 		val acceptedLocationPermission: Boolean,
-		val shouldShowLocationPermissionRotational: Boolean
-	): ActiveRunAction
+		val shouldShowLocationPermissionRotational: Boolean,
+	) : ActiveRunAction
+
 	data class SubmitNotificationPermissionInfo(
 		val acceptedNotificationPermission: Boolean,
-		val shouldShowNotificationPermissionRotational: Boolean
-	): ActiveRunAction
+		val shouldShowNotificationPermissionRotational: Boolean,
+	) : ActiveRunAction
+
 	data object DismissPermissionRotationalDialog : ActiveRunAction
+	class OnRunProcessed(val mapPictureByteArray: ByteArray) : ActiveRunAction
 }

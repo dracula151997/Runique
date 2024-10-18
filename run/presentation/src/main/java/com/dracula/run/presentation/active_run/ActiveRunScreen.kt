@@ -2,6 +2,7 @@ package com.dracula.run.presentation.active_run
 
 import android.Manifest
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -38,6 +39,7 @@ import com.dracula.run.presentation.utils.hasNotificationPermission
 import com.dracula.run.presentation.utils.shouldShowLocationPermissionRotational
 import com.dracula.run.presentation.utils.shouldShowNotificationPermissionRotational
 import org.koin.androidx.compose.koinViewModel
+import java.io.ByteArrayOutputStream
 
 @Composable
 fun ActiveRunScreenRoot(
@@ -151,7 +153,18 @@ private fun ActiveRunScreen(
 				isRunFinished = state.isRunFinished,
 				currentLocation = state.currentLocation,
 				locations = state.runData.locations,
-				onSnapshot = {},
+				onSnapshot = { bitmap ->
+					val stream = ByteArrayOutputStream()
+					stream.use {
+						bitmap.compress(
+							/* format = */ Bitmap.CompressFormat.JPEG,
+							/* quality = */ 80,
+							/* stream = */ it
+						)
+					}
+					onAction(ActiveRunAction.OnRunProcessed(stream.toByteArray()))
+
+				},
 				modifier = Modifier.fillMaxSize()
 			)
 			RunDataCard(
