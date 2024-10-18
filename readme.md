@@ -18,6 +18,7 @@ Run Tracker is built using Kotlin and various Android libraries. The main featur
 
 It seems like you might be using "idiot" in a playful or mistaken way here. Latitude, longitude, and altitude are geographical coordinates that define a location on Earth. Here's a breakdown:
 
-Latitude: Measures how far north or south you are from the equator (in degrees). It ranges from -90° (South Pole) to +90° (North Pole).
-Longitude: Measures how far east or west you are from the Prime Meridian (in degrees). It ranges from -180° to +180°.
-Altitude: The height above sea level (usually in meters or feet).
+* Latitude: Measures how far north or south you are from the equator (in degrees). It ranges from -90° (South Pole) to +90° (North Pole).
+* Longitude: Measures how far east or west you are from the Prime Meridian (in degrees). It ranges from -180° to +180°.
+* Altitude: The height above sea level (usually in meters or feet).
+
