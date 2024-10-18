@@ -7,6 +7,7 @@ import com.dracula.core.domain.utils.EmptyResult
 import com.dracula.core.domain.utils.Result
 import com.dracula.core.domain.utils.map
 import com.dracula.core.networking.constructRoute
+import com.dracula.core.networking.delete
 import com.dracula.core.networking.get
 import com.dracula.core.networking.safeCall
 import io.ktor.client.HttpClient
@@ -59,6 +60,10 @@ class KtorRemoteRunDataSource(
 	}
 
 	override suspend fun deleteRun(id: String): EmptyResult<DataError.Network> {
-		TODO("Not yet implemented")
+		return httpClient.delete(
+			route = "/run", queryParameters = mapOf(
+				id to id
+			)
+		)
 	}
 }
