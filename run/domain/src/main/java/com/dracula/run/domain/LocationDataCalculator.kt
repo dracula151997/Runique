@@ -18,7 +18,8 @@ object LocationDataCalculator {
 	 * @param locations A list of lists of `LocationTimestamp` objects, where each inner list represents a sequence of locations.
 	 * @return The total distance in meters, rounded to the nearest integer.
 	 *
-	 * @sample
+	 * Example usage:
+	 * ```
 	 * val loc1 = Location(52.5200, 13.4050) // Berlin
 	 * val loc2 = Location(48.8566, 2.3522)  // Paris
 	 * val loc3 = Location(51.5074, -0.1278) // London
@@ -26,8 +27,10 @@ object LocationDataCalculator {
 	 * val timestamp2 = LocationTimestamp(LocationWithAltitude(loc2, 35.0), Duration.seconds(3600))
 	 * val timestamp3 = LocationTimestamp(LocationWithAltitude(loc3, 36.0), Duration.seconds(7200))
 	 * val totalDistance = LocationDataCalculator.getTotalDistanceInMeters(listOf(listOf(timestamp1, timestamp2, timestamp3)))
-	 * // totalDistance: 1,316,000 meters (approximately)
+	 * // totalDistance: ~1,222,000 meters (approximately)
+	 * ```
 	 */
+
 	fun getTotalDistanceInMeters(locations: List<List<LocationTimestamp>>): Int {
 		return locations
 			.sumOf { timestampsPerLine ->
@@ -37,6 +40,19 @@ object LocationDataCalculator {
 			}
 	}
 
+	/**
+	 * Calculates the maximum speed in kilometers per hour (km/h) from a list of location timestamps.
+	 *
+	 * This function iterates through a list of lists of `LocationTimestamp` objects, where each inner list
+	 * represents a sequence of locations over time. It calculates the speed between consecutive locations
+	 * and returns the maximum speed found.
+	 *
+	 * The speed is calculated by dividing the distance between two locations by the time difference between them.
+	 * The distance is converted from meters to kilometers, and the time difference is converted from seconds to hours.
+	 *
+	 * @param locations A list of lists of `LocationTimestamp` objects, where each inner list represents a sequence of locations.
+	 * @return The maximum speed in kilometers per hour (km/h).
+	 */
 	fun getMaxSpeedKmh(locations: List<List<LocationTimestamp>>): Double {
 		return locations.maxOf { locationSet ->
 			locationSet.zipWithNext { location1, location2 ->
@@ -56,6 +72,19 @@ object LocationDataCalculator {
 		}
 	}
 
+	/**
+	 * Calculates the total elevation gain in meters from a list of location timestamps.
+	 *
+	 * This function iterates through a list of lists of `LocationTimestamp` objects, where each inner list
+	 * represents a sequence of locations over time. It calculates the elevation gain between consecutive locations
+	 * and returns the total elevation gain.
+	 *
+	 * The elevation gain is calculated by subtracting the altitude of the previous location from the altitude of the current location.
+	 * Only positive elevation gains are considered, and negative gains are ignored.
+	 *
+	 * @param locations A list of lists of `LocationTimestamp` objects, where each inner list represents a sequence of locations.
+	 * @return The total elevation gain in meters, rounded to the nearest integer.
+	 */
 	fun getTotalElevationMeters(locations: List<List<LocationTimestamp>>): Int {
 		return locations.sumOf { locationSet ->
 			locationSet.zipWithNext { location1, location2 ->
