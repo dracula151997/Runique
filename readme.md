@@ -92,8 +92,6 @@ List 2: [Point C] → [Point D]
 
 ---
 ## New Functions
-Great! Now let's talk about `zipWithNext {}` with the **lambda**.
-
 ### What is `zipWithNext {}`?
 
 `zipWithNext {}` works just like `zipWithNext()`, but with the added bonus of allowing you to **do something** with each pair of consecutive items **inside the curly braces `{}`**. In other words, you get to process or compute something for each pair directly.
@@ -171,7 +169,7 @@ Because:
 - But the difference is, inside the `{}`, you can **do something** with each pair (like adding, subtracting, or comparing them).
 - It’s useful when you need to process pairs of consecutive items and return a result for each pair.
 
-### What is flatMapLatest in Kotlin Flow?
+### What is `flatMapLatest` in Kotlin Flow?
 Okay, let's simplify it. Imagine you are at an ice cream shop where you can only eat one scoop at a time, but you like trying different flavors. Every time you pick a new flavor, the shop takes away the previous one before letting you taste the new one.
 
 In Kotlin Flow, `flatMapLatest` works just like this. It allows you to switch to a new "flavor" (or new data) and cancel the old one immediately.
@@ -197,7 +195,7 @@ flowOfRequests.flatMapLatest { request ->
 
 If "Request C" comes in while "Request A" or "Request B" is still in progress, they will be canceled, and only the result of "Request C" will be processed.
 
-### stateIn in Kotlin Flow
+### `stateIn` in Kotlin Flow
 Let's break down `stateIn` in Kotlin Flow with a simple analogy and its use cases.
 
 ### What is `stateIn`?
