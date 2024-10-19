@@ -17,7 +17,7 @@ Run Tracker is built using Kotlin and various Android libraries. The main featur
 
 ## General Concepts
 
-#### 1. Latitude, Longitude, and Altitude
+### 1. Latitude, Longitude, and Altitude
 
 It seems like you might be using "idiot" in a playful or mistaken way here. Latitude, longitude, and
 altitude are geographical coordinates that define a location on Earth. Here's a breakdown:
@@ -91,6 +91,97 @@ List 2: [Point C] → [Point D]
 
 
 ---
+
+### What is **elapsed time**?
+
+Imagine you have a stopwatch. You press "start," and it begins counting. After some time, you press "stop," and the stopwatch shows how long it has been running. That amount of time that passed between when you started and when you stopped is called the **elapsed time**.
+
+### Elapsed Time = Time that has passed
+
+So, in basic terms, **elapsed time** means the amount of time that has passed between two events: the start and the end.
+
+### Example:
+
+1. You start a task at 2:00 PM.
+2. You finish the task at 2:15 PM.
+
+The **elapsed time** is 15 minutes, because that’s how much time passed from the start to the end.
+
+### Real-world uses:
+- **Cooking**: You start baking a cake and check how much time has passed since you put it in the oven. That's the elapsed time!
+- **Games**: In racing games, when you cross the finish line, they show the time it took you to complete the race—that’s your elapsed time.
+
+### How to calculate the elapsed time?
+Calculating elapsed time is super simple! You just need to know the **start time** and the **end time**, and then you subtract the start time from the end time to get the elapsed time.
+
+### Formula:
+**Elapsed Time = End Time - Start Time**
+
+### Steps to calculate elapsed time:
+
+1. **Record the start time.**
+2. **Record the end time.**
+3. **Subtract the start time from the end time.**
+4. The result is the elapsed time.
+
+### Example 1: Simple Clock Time
+- Start time: 3:00 PM
+- End time: 5:30 PM
+
+**Elapsed Time = 5:30 PM - 3:00 PM = 2 hours and 30 minutes**
+
+### Example 2: Using code in Kotlin
+
+If you're coding in Kotlin, you can use `System.currentTimeMillis()` to capture the time and calculate the elapsed time in milliseconds (then convert to seconds or minutes).
+
+```kotlin
+val startTime = System.currentTimeMillis()
+
+// Simulate some task by waiting for a few seconds
+Thread.sleep(2000) // 2 seconds
+
+val endTime = System.currentTimeMillis()
+
+// Calculate elapsed time in milliseconds
+val elapsedTime = endTime - startTime
+
+// Convert to seconds
+val elapsedTimeInSeconds = elapsedTime / 1000
+
+println("Elapsed time: $elapsedTimeInSeconds seconds")
+```
+
+### Example 3: DateTime Calculation (with LocalDateTime)
+
+If you're working with more precise times (like hours, minutes, seconds), you can use the `LocalDateTime` or `Instant` class in Kotlin to calculate the difference.
+
+```kotlin
+import java.time.LocalDateTime
+import java.time.Duration
+
+val startTime = LocalDateTime.now()
+
+// Simulate a delay (just to show time has passed)
+Thread.sleep(3000) // 3 seconds
+
+val endTime = LocalDateTime.now()
+
+// Calculate the elapsed time
+val elapsedTime = Duration.between(startTime, endTime)
+
+println("Elapsed time: ${elapsedTime.seconds} seconds")
+```
+
+In this example, `Duration.between()` gives you the elapsed time in a human-friendly way (like seconds, minutes, or hours).
+
+### Recap:
+- Get the start time.
+- Get the end time.
+- Subtract start time from end time to calculate elapsed time.
+
+That’s how you calculate it! Let me know if you'd like more examples or details!
+
+Does that help clarify things?
 ## New Functions
 ### What is `zipWithNext {}`?
 

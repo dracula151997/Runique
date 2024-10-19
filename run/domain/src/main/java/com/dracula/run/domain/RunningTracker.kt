@@ -7,8 +7,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -19,7 +17,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.zip
-import kotlinx.coroutines.runBlocking
 import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.ZERO
@@ -31,14 +28,14 @@ class RunningTracker(
 	applicationScope: CoroutineScope,
 ) {
 	private val _runData = MutableStateFlow(RunData())
-	val runData: StateFlow<RunData> = _runData.asStateFlow()
+	val runData: StateFlow<RunData> = _runData
 
 	private val _isTracking = MutableStateFlow(false)
 	val isTracking: StateFlow<Boolean> = _isTracking
 	private val isObservingLocation = MutableStateFlow(false)
 
-	private val _elapsedTime = MutableStateFlow(Duration.ZERO)
-	val elapsedTime: StateFlow<Duration> = _elapsedTime.asStateFlow()
+	private val _elapsedTime = MutableStateFlow(ZERO)
+	val elapsedTime: StateFlow<Duration> = _elapsedTime
 
 	/**
 	 * A `StateFlow` that emits the current location if location observation is active.
@@ -78,7 +75,7 @@ class RunningTracker(
 		 */
 		_isTracking
 			.onEach { isTracking ->
-				if (!isTracking){
+				if (!isTracking) {
 					val newList = buildList {
 						addAll(runData.value.locations)
 						add(emptyList<LocationTimestamp>())
@@ -157,7 +154,7 @@ class RunningTracker(
 		isObservingLocation.value = false
 	}
 
-	fun finishRun(){
+	fun finishRun() {
 		stopObservingLocation()
 		stopTracking()
 		_elapsedTime.value = ZERO
