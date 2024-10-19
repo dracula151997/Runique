@@ -90,7 +90,7 @@ List 2: [Point C] → [Point D]
 3. **Navigation**: Display travel paths with multiple stops.
 
 
-
+---
 ### New Functions
 Great! Now let's talk about `zipWithNext {}` with the **lambda**.
 
