@@ -13,9 +13,9 @@ Run Tracker is built using Kotlin and various Android libraries. The main featur
 - Saving and viewing past runs
 - Displaying run data on a map
 
-## New Concepts I Learned
+# New Concepts I Learned
 
-### General Concepts
+## General Concepts
 
 #### 1. Latitude, Longitude, and Altitude
 
@@ -91,7 +91,7 @@ List 2: [Point C] → [Point D]
 
 
 ---
-### New Functions
+## New Functions
 Great! Now let's talk about `zipWithNext {}` with the **lambda**.
 
 ### What is `zipWithNext {}`?
