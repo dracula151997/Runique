@@ -8,6 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dracula.core.domain.location.Location
 import com.dracula.core.domain.run.Run
+import com.dracula.core.domain.run.RunRepository
+import com.dracula.core.domain.utils.Result
+import com.dracula.core.presentation.ui.asUiText
 import com.dracula.run.domain.LocationDataCalculator
 import com.dracula.run.domain.RunningTracker
 import com.dracula.run.presentation.active_run.service.ActiveRunService
@@ -26,6 +29,7 @@ import java.time.ZonedDateTime
 
 class ActiveRunViewModel(
 	private val runningTracker: RunningTracker,
+	private val runRepository: RunRepository,
 ) : ViewModel() {
 	var state by mutableStateOf(
 		ActiveRunState(
@@ -165,7 +169,7 @@ class ActiveRunViewModel(
 		}
 	}
 
-	private fun finishRun(mapPictureByteArray: ByteArray) {
+	private fun finishRun(mapPictureBytes: ByteArray) {
 		val locations = state.runData.locations
 		if (locations.isEmpty() || locations.first().size <= 1) {
 			state = state.copy(
@@ -185,9 +189,16 @@ class ActiveRunViewModel(
 				totalElevationMeters = LocationDataCalculator.getTotalElevationMeters(locations = locations),
 				mapPictureUrl = null
 			)
-			//TODO: save run in the repository
-
 			runningTracker.finishRun()
+			//TODO: save run in the repository
+			when (val result = runRepository.upsertRun(run, mapPictureBytes)) {
+				is Result.Error -> eventChannel.send(ActiveRunEvent.Error(result.error.asUiText()))
+				is Result.Success -> {
+					eventChannel.send(ActiveRunEvent.RunSaved)
+				}
+			}
+
+
 			state = state.copy(
 				isSavingRun = false
 			)

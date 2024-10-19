@@ -89,16 +89,18 @@ List 2: [Point C] → [Point D]
 2. **Graphics**: Create connected lines in computer graphics.
 3. **Navigation**: Display travel paths with multiple stops.
 
-
 ---
 
 ### What is **elapsed time**?
 
-Imagine you have a stopwatch. You press "start," and it begins counting. After some time, you press "stop," and the stopwatch shows how long it has been running. That amount of time that passed between when you started and when you stopped is called the **elapsed time**.
+Imagine you have a stopwatch. You press "start," and it begins counting. After some time, you
+press "stop," and the stopwatch shows how long it has been running. That amount of time that passed
+between when you started and when you stopped is called the **elapsed time**.
 
 ### Elapsed Time = Time that has passed
 
-So, in basic terms, **elapsed time** means the amount of time that has passed between two events: the start and the end.
+So, in basic terms, **elapsed time** means the amount of time that has passed between two events:
+the start and the end.
 
 ### Example:
 
@@ -108,13 +110,19 @@ So, in basic terms, **elapsed time** means the amount of time that has passed be
 The **elapsed time** is 15 minutes, because that’s how much time passed from the start to the end.
 
 ### Real-world uses:
-- **Cooking**: You start baking a cake and check how much time has passed since you put it in the oven. That's the elapsed time!
-- **Games**: In racing games, when you cross the finish line, they show the time it took you to complete the race—that’s your elapsed time.
+
+- **Cooking**: You start baking a cake and check how much time has passed since you put it in the
+  oven. That's the elapsed time!
+- **Games**: In racing games, when you cross the finish line, they show the time it took you to
+  complete the race—that’s your elapsed time.
 
 ### How to calculate the elapsed time?
-Calculating elapsed time is super simple! You just need to know the **start time** and the **end time**, and then you subtract the start time from the end time to get the elapsed time.
+
+Calculating elapsed time is super simple! You just need to know the **start time** and the **end
+time**, and then you subtract the start time from the end time to get the elapsed time.
 
 ### Formula:
+
 **Elapsed Time = End Time - Start Time**
 
 ### Steps to calculate elapsed time:
@@ -125,6 +133,7 @@ Calculating elapsed time is super simple! You just need to know the **start time
 4. The result is the elapsed time.
 
 ### Example 1: Simple Clock Time
+
 - Start time: 3:00 PM
 - End time: 5:30 PM
 
@@ -132,7 +141,8 @@ Calculating elapsed time is super simple! You just need to know the **start time
 
 ### Example 2: Using code in Kotlin
 
-If you're coding in Kotlin, you can use `System.currentTimeMillis()` to capture the time and calculate the elapsed time in milliseconds (then convert to seconds or minutes).
+If you're coding in Kotlin, you can use `System.currentTimeMillis()` to capture the time and
+calculate the elapsed time in milliseconds (then convert to seconds or minutes).
 
 ```kotlin
 val startTime = System.currentTimeMillis()
@@ -153,7 +163,8 @@ println("Elapsed time: $elapsedTimeInSeconds seconds")
 
 ### Example 3: DateTime Calculation (with LocalDateTime)
 
-If you're working with more precise times (like hours, minutes, seconds), you can use the `LocalDateTime` or `Instant` class in Kotlin to calculate the difference.
+If you're working with more precise times (like hours, minutes, seconds), you can use the
+`LocalDateTime` or `Instant` class in Kotlin to calculate the difference.
 
 ```kotlin
 import java.time.LocalDateTime
@@ -172,9 +183,11 @@ val elapsedTime = Duration.between(startTime, endTime)
 println("Elapsed time: ${elapsedTime.seconds} seconds")
 ```
 
-In this example, `Duration.between()` gives you the elapsed time in a human-friendly way (like seconds, minutes, or hours).
+In this example, `Duration.between()` gives you the elapsed time in a human-friendly way (like
+seconds, minutes, or hours).
 
 ### Recap:
+
 - Get the start time.
 - Get the end time.
 - Subtract start time from end time to calculate elapsed time.
@@ -182,10 +195,14 @@ In this example, `Duration.between()` gives you the elapsed time in a human-frie
 That’s how you calculate it! Let me know if you'd like more examples or details!
 
 Does that help clarify things?
+
 ## New Functions
+
 ### What is `zipWithNext {}`?
 
-`zipWithNext {}` works just like `zipWithNext()`, but with the added bonus of allowing you to **do something** with each pair of consecutive items **inside the curly braces `{}`**. In other words, you get to process or compute something for each pair directly.
+`zipWithNext {}` works just like `zipWithNext()`, but with the added bonus of allowing you to **do
+something** with each pair of consecutive items **inside the curly braces `{}`**. In other words,
+you get to process or compute something for each pair directly.
 
 ### How does it work?
 
@@ -201,23 +218,28 @@ When you use `zipWithNext {}` like this:
 
 ```kotlin
 numbers.zipWithNext { a, b ->
-    b - a
+	b - a
 }
 ```
 
 Here’s what happens:
-- The `zipWithNext {}` goes through the list and pairs the items like this:
-  - First pair: `(1, 3)`
-  - Second pair: `(3, 5)`
-  - Third pair: `(5, 7)`
 
-- Inside the curly braces `{}`, you get to **do something** with each pair. In this case, we're subtracting the first number (`a`) from the second number (`b`).
+- The `zipWithNext {}` goes through the list and pairs the items like this:
+    - First pair: `(1, 3)`
+    - Second pair: `(3, 5)`
+    - Third pair: `(5, 7)`
+
+- Inside the curly braces `{}`, you get to **do something** with each pair. In this case, we're
+  subtracting the first number (`a`) from the second number (`b`).
 
 The result will be:
+
 ```kotlin
 // Output: [2, 2, 2]
 ```
+
 Because:
+
 - `3 - 1 = 2`
 - `5 - 3 = 2`
 - `7 - 5 = 2`
@@ -225,9 +247,9 @@ Because:
 ### So what’s happening here?
 
 - **`zipWithNext { a, b -> }`**:
-  - **`a`** is the first item in each pair.
-  - **`b`** is the second item in each pair.
-  - You can perform any calculation or action with `a` and `b`.
+    - **`a`** is the first item in each pair.
+    - **`b`** is the second item in each pair.
+    - You can perform any calculation or action with `a` and `b`.
 
 ### Example with locations:
 
@@ -241,15 +263,18 @@ You can calculate the **difference** (distance) between each consecutive locatio
 
 ```kotlin
 locations.zipWithNext { loc1, loc2 ->
-    loc2 - loc1 // Calculate the difference between the two locations
+	loc2 - loc1 // Calculate the difference between the two locations
 }
 ```
 
 This will give you:
+
 ```kotlin
 // Output: [100, 100, 100]
 ```
+
 Because:
+
 - `200 - 100 = 100`
 - `300 - 200 = 100`
 - `400 - 300 = 100`
@@ -257,19 +282,27 @@ Because:
 ### Summary:
 
 - **`zipWithNext {}`** pairs consecutive items in a list, like regular `zipWithNext()`.
-- But the difference is, inside the `{}`, you can **do something** with each pair (like adding, subtracting, or comparing them).
+- But the difference is, inside the `{}`, you can **do something** with each pair (like adding,
+  subtracting, or comparing them).
 - It’s useful when you need to process pairs of consecutive items and return a result for each pair.
 
 ### What is `flatMapLatest` in Kotlin Flow?
-Okay, let's simplify it. Imagine you are at an ice cream shop where you can only eat one scoop at a time, but you like trying different flavors. Every time you pick a new flavor, the shop takes away the previous one before letting you taste the new one.
 
-In Kotlin Flow, `flatMapLatest` works just like this. It allows you to switch to a new "flavor" (or new data) and cancel the old one immediately.
+Okay, let's simplify it. Imagine you are at an ice cream shop where you can only eat one scoop at a
+time, but you like trying different flavors. Every time you pick a new flavor, the shop takes away
+the previous one before letting you taste the new one.
+
+In Kotlin Flow, `flatMapLatest` works just like this. It allows you to switch to a new "flavor" (or
+new data) and cancel the old one immediately.
 
 Here's how it works in plain words:
 
-1. **Flow of requests**: Imagine you're sending requests for data continuously. Each request triggers a new data flow.
-2. **Cancel the old flow**: If a new request comes in before the previous one finishes, `flatMapLatest` cancels the ongoing flow and starts the new one.
-3. **Latest only**: It always gives you the result of the latest request and ignores the previous ones.
+1. **Flow of requests**: Imagine you're sending requests for data continuously. Each request
+   triggers a new data flow.
+2. **Cancel the old flow**: If a new request comes in before the previous one finishes,
+   `flatMapLatest` cancels the ongoing flow and starts the new one.
+3. **Latest only**: It always gives you the result of the latest request and ignores the previous
+   ones.
 
 ### Example:
 
@@ -277,37 +310,48 @@ Here's how it works in plain words:
 val flowOfRequests = flowOf("Request A", "Request B", "Request C")
 
 flowOfRequests.flatMapLatest { request ->
-    // Imagine we're fetching data based on each request
-    fetchDataBasedOnRequest(request)
+	// Imagine we're fetching data based on each request
+	fetchDataBasedOnRequest(request)
 }.collect { data ->
-    println(data) // You only get the result of the latest request
+	println(data) // You only get the result of the latest request
 }
 ```
 
-If "Request C" comes in while "Request A" or "Request B" is still in progress, they will be canceled, and only the result of "Request C" will be processed.
+If "Request C" comes in while "Request A" or "Request B" is still in progress, they will be
+canceled, and only the result of "Request C" will be processed.
 
 ### `stateIn` in Kotlin Flow
+
 Let's break down `stateIn` in Kotlin Flow with a simple analogy and its use cases.
 
 ### What is `stateIn`?
 
-Think of `stateIn` as a **live scoreboard** for an ongoing game. Imagine you're watching a football game and want to know the current score at any time. The scoreboard always shows the latest score, and if you miss any goals, you can still see the updated score when you look at the board.
+Think of `stateIn` as a **live scoreboard** for an ongoing game. Imagine you're watching a football
+game and want to know the current score at any time. The scoreboard always shows the latest score,
+and if you miss any goals, you can still see the updated score when you look at the board.
 
 In Kotlin Flow:
-- **Flow** is like the game that's constantly producing events (data updates).
-- **stateIn** is like the scoreboard. It gives you the most recent data (the current state) at any moment, even if you weren't watching the updates from the beginning.
 
-When you convert a `Flow` into a `StateFlow` using `stateIn`, it starts **holding the latest value** so that if anyone asks, it can instantly provide the current state without waiting for the Flow to emit.
+- **Flow** is like the game that's constantly producing events (data updates).
+- **stateIn** is like the scoreboard. It gives you the most recent data (the current state) at any
+  moment, even if you weren't watching the updates from the beginning.
+
+When you convert a `Flow` into a `StateFlow` using `stateIn`, it starts **holding the latest value**
+so that if anyone asks, it can instantly provide the current state without waiting for the Flow to
+emit.
 
 ### How does it work?
 
-- `stateIn` turns your cold Flow (which doesn't start until someone listens) into a **hot Flow** (always active and holding the latest value).
+- `stateIn` turns your cold Flow (which doesn't start until someone listens) into a **hot Flow** (
+  always active and holding the latest value).
 - It will keep emitting updates while holding onto the latest value that can be accessed anytime.
 
 ### Use Cases for `stateIn`
 
 1. **UI State Management (e.g., ViewModel to UI)**:
-   When building UIs, you often need to display and update state (like form inputs, loading indicators, etc.). `stateIn` ensures that the UI always has the most up-to-date data without needing to wait for the next emission.
+   When building UIs, you often need to display and update state (like form inputs, loading
+   indicators, etc.). `stateIn` ensures that the UI always has the most up-to-date data without
+   needing to wait for the next emission.
 
    Example:
    ```kotlin
@@ -315,18 +359,28 @@ When you convert a `Flow` into a `StateFlow` using `stateIn`, it starts **holdin
        .stateIn(viewModelScope, SharingStarted.Eagerly, initialUserState)
    ```
 
-   Here, the UI can access `userStateFlow` anytime and get the current user data immediately, instead of waiting for the Flow to emit the latest value.
+   Here, the UI can access `userStateFlow` anytime and get the current user data immediately,
+   instead of waiting for the Flow to emit the latest value.
 
 2. **Shared Data Between Multiple Collectors**:
-   Suppose you have multiple parts of your app (like different fragments) that need the same data (e.g., user settings). By using `stateIn`, you ensure that all these parts of the app have access to the current settings, and when the settings change, all collectors are updated automatically.
+   Suppose you have multiple parts of your app (like different fragments) that need the same data (
+   e.g., user settings). By using `stateIn`, you ensure that all these parts of the app have access
+   to the current settings, and when the settings change, all collectors are updated automatically.
 
 3. **Preventing Re-triggering Expensive Operations**:
-   If your Flow is triggering expensive operations (like network requests) every time it's collected, you can use `stateIn` to keep the latest result and avoid running the same operation repeatedly.
+   If your Flow is triggering expensive operations (like network requests) every time it's
+   collected, you can use `stateIn` to keep the latest result and avoid running the same operation
+   repeatedly.
 
 4. **Converting Cold Flows to Hot Flows**:
-   Cold flows start from scratch every time they're collected, but if you want to share a Flow that emits updates to multiple subscribers (e.g., app-wide data like user authentication state), `stateIn` makes sure that subscribers all get the latest value and new subscribers don't re-trigger the entire Flow.
+   Cold flows start from scratch every time they're collected, but if you want to share a Flow that
+   emits updates to multiple subscribers (e.g., app-wide data like user authentication state),
+   `stateIn` makes sure that subscribers all get the latest value and new subscribers don't
+   re-trigger the entire Flow.
 
 ### Summary
 
 - **`stateIn` = Live scoreboard:** Always shows the latest data (state) from the Flow.
-- **Use it** when you need to hold onto the latest value and provide it immediately to new collectors, especially for UI state management, sharing data across collectors, and preventing redundant operations.
+- **Use it** when you need to hold onto the latest value and provide it immediately to new
+  collectors, especially for UI state management, sharing data across collectors, and preventing
+  redundant operations.

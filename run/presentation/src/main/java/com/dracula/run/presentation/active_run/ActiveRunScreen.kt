@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Build
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -30,6 +31,7 @@ import com.dracula.core.presentation.designsystem.components.RuniqueDialog
 import com.dracula.core.presentation.designsystem.components.RuniqueFloatingActionButton
 import com.dracula.core.presentation.designsystem.components.RuniqueOutlinedActionButton
 import com.dracula.core.presentation.designsystem.components.RuniqueToolbar
+import com.dracula.core.presentation.ui.ObserveAsEvents
 import com.dracula.run.presentation.R
 import com.dracula.run.presentation.active_run.components.RunDataCard
 import com.dracula.run.presentation.active_run.maps.TrackerMap
@@ -43,12 +45,40 @@ import java.io.ByteArrayOutputStream
 
 @Composable
 fun ActiveRunScreenRoot(
+	onFinish: () -> Unit,
+	onBack: () -> Unit,
 	onServiceToggle: (shouldServiceRun: Boolean) -> Unit,
 	viewModel: ActiveRunViewModel = koinViewModel(),
 ) {
+	val context = LocalContext.current
+	ObserveAsEvents(
+		flow = viewModel.events
+	) { event ->
+		when (event) {
+			is ActiveRunEvent.Error -> {
+				Toast.makeText(context, event.error.asString(context = context), Toast.LENGTH_SHORT)
+					.show()
+			}
+
+			ActiveRunEvent.RunSaved -> {
+				onFinish()
+			}
+		}
+	}
 	ActiveRunScreen(
 		state = viewModel.state,
-		onAction = viewModel::onAction,
+		onAction = { action ->
+			when(action){
+				is ActiveRunAction.OnBackClick -> {
+					if (!viewModel.state.hasStartedRunning){
+						onBack()
+					}
+				}
+				else -> Unit
+			}
+			viewModel.onAction(action)
+
+		},
 		onServiceToggle = onServiceToggle
 	)
 }

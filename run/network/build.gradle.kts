@@ -16,4 +16,5 @@ dependencies {
 	implementation(libs.bundles.ktor)
 	implementation(libs.kotlinx.serialization.json)
 	coreLibraryDesugaring(libs.desugar.jdk.libs)
+	implementation(libs.bundles.koin)
 }

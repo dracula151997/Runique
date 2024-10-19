@@ -6,6 +6,7 @@ import com.dracula.auth.presentation.di.authViewModelModule
 import com.dracula.core.database.databaseModule
 import com.dracula.core.di.coreDataModule
 import com.dracula.run.location.di.locationModule
+import com.dracula.run.network.di.networkModule
 import com.dracula.run.presentation.di.runPresentationModule
 import com.dracula.runique.di.appModule
 import kotlinx.coroutines.CoroutineScope
@@ -32,7 +33,9 @@ class RuniqueApp : Application(){
 				coreDataModule,
 				runPresentationModule,
 				locationModule,
-				databaseModule
+				databaseModule,
+				coreDataModule,
+				networkModule
 			)
 		}
 	}
