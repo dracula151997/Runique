@@ -45,10 +45,10 @@ class RoomLocalRunDataSource(
 	}
 
 	override suspend fun deleteRun(id: String) {
-		TODO("Not yet implemented")
+		runDao.deleteRun(id)
 	}
 
 	override suspend fun deleteAllRuns() {
-		TODO("Not yet implemented")
+		runDao.deleteAllRuns()
 	}
 }

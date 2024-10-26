@@ -72,7 +72,9 @@ fun RunListItem(
 				.background(MaterialTheme.colorScheme.surface)
 				.combinedClickable(
 					onClick = {},
-					onDoubleClick = { showDropDown = true }
+					onLongClick = {
+						showDropDown = true
+					}
 				)
 				.padding(16.dp),
 			verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -85,9 +87,12 @@ fun RunListItem(
 			RunningDateSection(dateTime = runUi.dateTime)
 			DataGrid(run = runUi, modifier = Modifier.fillMaxWidth())
 		}
-		DropdownMenu(expanded = showDropDown, onDismissRequest = {
-			showDropDown = false
-		}) {
+		DropdownMenu(
+			expanded = showDropDown,
+			onDismissRequest = {
+				showDropDown = false
+			},
+		) {
 			DropdownMenuItem(
 				text = {
 					Text(
@@ -165,7 +170,10 @@ private fun MapImage(imageUrl: String?, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun RunningTimeSection(duration: String, modifier: Modifier = Modifier) {
+fun RunningTimeSection(
+	duration: String,
+	modifier: Modifier = Modifier,
+) {
 	Row(
 		modifier = modifier,
 		verticalAlignment = Alignment.CenterVertically
@@ -236,7 +244,7 @@ private fun DataGrid(
 		)
 	)
 	var maxWidth by remember { mutableIntStateOf(0) }
-	val maxWithDp = with(LocalDensity.current) { maxWidth.toDp() }
+	val maxWidthDp = with(LocalDensity.current) { maxWidth.toDp() }
 	FlowRow(
 		modifier = modifier.fillMaxWidth(),
 		horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -244,11 +252,14 @@ private fun DataGrid(
 		maxItemsInEachRow = 3
 	) {
 		runDataUiList.forEach { runData ->
-			DataGridCell(runData = runData, modifier = Modifier
-				.defaultMinSize(minWidth = maxWithDp)
-				.onSizeChanged {
-					maxWidth = max(maxWidth, it.width)
-				})
+			DataGridCell(
+				runData = runData,
+				modifier = Modifier
+					.defaultMinSize(minWidth = maxWidthDp)
+					.onSizeChanged {
+						maxWidth = max(maxWidth, it.width)
+					},
+			)
 		}
 	}
 }

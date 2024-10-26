@@ -3,7 +3,7 @@ package com.dracula.run.network
 import com.dracula.core.domain.location.Location
 import com.dracula.core.domain.run.Run
 import java.time.Instant
-import java.time.ZoneId
+import java.time.ZoneOffset
 import kotlin.time.Duration.Companion.milliseconds
 
 fun RunDto.toRun(): Run {
@@ -13,7 +13,7 @@ fun RunDto.toRun(): Run {
 		distanceInMeters = distanceMeters,
 		location = Location(latitude = latitude, longitude = longitude),
 		totalElevationMeters = totalElevation,
-		dateTimeUtc = Instant.parse(dateTimeUtc).atZone(ZoneId.of("Utc")),
+		dateTimeUtc = Instant.parse(dateTimeUtc).atZone(ZoneOffset.UTC),
 		maxSpeedKmh = maxSpeedKmh,
 		mapPictureUrl = mapPictureUrl,
 	)
