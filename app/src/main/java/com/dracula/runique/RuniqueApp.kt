@@ -5,6 +5,7 @@ import com.dracula.auth.data.authDataModule
 import com.dracula.auth.presentation.di.authViewModelModule
 import com.dracula.core.database.databaseModule
 import com.dracula.core.di.coreDataModule
+import com.dracula.run.data.di.runDataModule
 import com.dracula.run.location.di.locationModule
 import com.dracula.run.network.di.networkModule
 import com.dracula.run.presentation.di.runPresentationModule
@@ -13,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.workmanager.koin.workManagerFactory
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
@@ -26,6 +28,7 @@ class RuniqueApp : Application(){
 		startKoin {
 			androidLogger()
 			androidContext(this@RuniqueApp)
+			workManagerFactory()
 			modules(
 				appModule,
 				authDataModule,
@@ -35,7 +38,8 @@ class RuniqueApp : Application(){
 				locationModule,
 				databaseModule,
 				coreDataModule,
-				networkModule
+				networkModule,
+				runDataModule,
 			)
 		}
 	}
