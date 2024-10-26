@@ -3,6 +3,7 @@ package com.dracula.core.data.run
 import com.dracula.core.data.auth.EncryptedSessionStorage
 import com.dracula.core.database.dao.RunPendingSyncDao
 import com.dracula.core.database.mappers.toRun
+import com.dracula.core.domain.SyncRunScheduler
 import com.dracula.core.domain.run.LocalRunDataSource
 import com.dracula.core.domain.run.RemoteRunDataSource
 import com.dracula.core.domain.run.Run
@@ -25,6 +26,7 @@ class OfflineFirstRunRepository(
 	private val applicationScope: CoroutineScope,
 	private val runPendingSyncDao: RunPendingSyncDao,
 	private val sessionStorage: EncryptedSessionStorage,
+	private val syncRunScheduler: SyncRunScheduler,
 ) : RunRepository {
 	override fun getRuns(): Flow<List<Run>> {
 		return localRunDataSource.getRuns()
@@ -57,6 +59,14 @@ class OfflineFirstRunRepository(
 			}
 
 			is Result.Error -> {
+				applicationScope.launch {
+					syncRunScheduler.scheduleSync(
+						SyncRunScheduler.SyncType.CreateRun(
+							run = run,
+							mapPictureBytes = mapPicture
+						)
+					)
+				}.join()
 				Result.Success(Unit)
 			}
 		}
@@ -76,6 +86,11 @@ class OfflineFirstRunRepository(
 		val remoteResult = applicationScope.async {
 			remoteRunDataSource.deleteRun(id)
 		}.await()
+		if (remoteResult is Result.Error) {
+			applicationScope.launch {
+				syncRunScheduler.scheduleSync(SyncRunScheduler.SyncType.DeleteRun(runId = id))
+			}
+		}
 
 	}
 
