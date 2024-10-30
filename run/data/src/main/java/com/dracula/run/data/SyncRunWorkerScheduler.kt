@@ -39,12 +39,12 @@ class SyncRunWorkerScheduler(
 				mapPictureBytes = syncType.mapPictureBytes
 			)
 
-			is SyncRunScheduler.SyncType.DeleteRun -> scheduleDeteRunWorker(runId = syncType.runId)
+			is SyncRunScheduler.SyncType.DeleteRun -> scheduleDeleteRunWorker(runId = syncType.runId)
 			is SyncRunScheduler.SyncType.FetchRuns -> scheduleFetchRunsWorker(interval = syncType.interval)
 		}
 	}
 
-	private suspend fun scheduleDeteRunWorker(runId: RunId) {
+	private suspend fun scheduleDeleteRunWorker(runId: RunId) {
 		val userId = sessionStorage.get()?.userId ?: return
 		val entity = DeletedRunSyncEntity(
 			runId = runId,
@@ -66,6 +66,8 @@ class SyncRunWorkerScheduler(
 					.putString(DeleteRunWorker.RUN_ID, entity.runId)
 					.build()
 			).build()
+		applicationScope.launch { workManager.enqueue(workRequest) }.join()
+
 	}
 
 	private suspend fun scheduleCreateRunWorker(

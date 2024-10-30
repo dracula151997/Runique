@@ -13,6 +13,11 @@ import com.dracula.core.domain.utils.DataError
 import com.dracula.core.domain.utils.EmptyResult
 import com.dracula.core.domain.utils.Result
 import com.dracula.core.domain.utils.asEmptyDataResult
+import com.dracula.core.networking.get
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerAuthProvider
+import io.ktor.client.plugins.plugin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -27,6 +32,7 @@ class OfflineFirstRunRepository(
 	private val runPendingSyncDao: RunPendingSyncDao,
 	private val sessionStorage: EncryptedSessionStorage,
 	private val syncRunScheduler: SyncRunScheduler,
+	private val client: HttpClient,
 ) : RunRepository {
 	override fun getRuns(): Flow<List<Run>> {
 		return localRunDataSource.getRuns()
@@ -144,5 +150,22 @@ class OfflineFirstRunRepository(
 			deletedJobs.forEach { it.join() }
 		}
 	}
+
+	override suspend fun logout(): EmptyResult<DataError.Network> {
+		val result = client.get<Unit>(
+			route = "/logout"
+		).asEmptyDataResult()
+		client.plugin(Auth)
+			.providers
+			.filterIsInstance<BearerAuthProvider>()
+			.firstOrNull()
+			?.clearToken()
+		return result
+	}
+
+	override suspend fun deleteAllRuns() {
+		localRunDataSource.deleteAllRuns()
+	}
+
 
 }

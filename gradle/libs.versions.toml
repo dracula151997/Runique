@@ -127,6 +127,7 @@ runique-android-feature-ui = { id = "runique.android.feature.ui", version = "uns
 runique-android-room = { id = "runique.android.room", version = "unspecified" }
 runique-library-jvm = { id = "runique.jvm.library", version = "unspecified" }
 runique-jvm-ktor = { id = "runique.jvm.ktor", version = "unspecified" }
+runique-android-dynamic-feature = { id = "runique.android.dynamic.feature", version = "unspecified" }
 
 [bundles]
 koin = ["koin-android", "koin-android-workmanager", "koin-core"]

@@ -9,27 +9,72 @@ import com.dracula.core.domain.run.Run
 
 @Dao
 interface RunPendingSyncDao {
-	@Query("SELECT * FROM RunPendingSyncEntity WHERE userId = :userId")
-	suspend fun getAllRunPendingSyncEntities(userId: String): List<RunPendingSyncEntity>
 
-	@Query("SELECT * FROM RunPendingSyncEntity WHERE runId = :runId")
-	suspend fun getRunPendingSyncEntity(runId: String): RunPendingSyncEntity?
+    /**
+     * Retrieves all pending sync entities for a specific user.
+     *
+     * @param userId The ID of the user.
+     * @return A list of RunPendingSyncEntity objects.
+     */
+    @Query("SELECT * FROM RunPendingSyncEntity WHERE userId = :userId")
+    suspend fun getAllRunPendingSyncEntities(userId: String): List<RunPendingSyncEntity>
 
-	@Upsert
-	suspend fun upsertRunPendingSyncEntity(runPendingSyncEntity: RunPendingSyncEntity)
+    /**
+     * Retrieves a specific pending sync entity by run ID.
+     *
+     * @param runId The ID of the run.
+     * @return The RunPendingSyncEntity object, or null if not found.
+     */
+    @Query("SELECT * FROM RunPendingSyncEntity WHERE runId = :runId")
+    suspend fun getRunPendingSyncEntity(runId: String): RunPendingSyncEntity?
 
-	@Query("DELETE FROM RunPendingSyncEntity WHERE runId = :runId")
-	suspend fun deleteRunPendingSyncEntity(runId: String)
+    /**
+     * Inserts or updates a pending sync entity.
+     *
+     * @param runPendingSyncEntity The RunPendingSyncEntity object to be upserted.
+     */
+    @Upsert
+    suspend fun upsertRunPendingSyncEntity(runPendingSyncEntity: RunPendingSyncEntity)
 
-	@Query("SELECT * FROM DeletedRunSyncEntity WHERE userId = :userId")
-	suspend fun getAllDeletedRunSyncEntities(userId: String): List<DeletedRunSyncEntity>
+    /**
+     * Deletes a specific pending sync entity by run ID.
+     *
+     * @param runId The ID of the run.
+     */
+    @Query("DELETE FROM RunPendingSyncEntity WHERE runId = :runId")
+    suspend fun deleteRunPendingSyncEntity(runId: String)
 
-	@Query("SELECT * FROM DeletedRunSyncEntity WHERE runId = :runId")
-	suspend fun getDeletedRunSyncEntity(runId: String): DeletedRunSyncEntity?
+    /**
+     * Retrieves all deleted run sync entities for a specific user.
+     *
+     * @param userId The ID of the user.
+     * @return A list of DeletedRunSyncEntity objects.
+     */
+    @Query("SELECT * FROM DeletedRunSyncEntity WHERE userId = :userId")
+    suspend fun getAllDeletedRunSyncEntities(userId: String): List<DeletedRunSyncEntity>
 
-	@Upsert
-	suspend fun upsertDeletedRunSyncEntity(deletedRunSyncEntity: DeletedRunSyncEntity)
+    /**
+     * Retrieves a specific deleted run sync entity by run ID.
+     *
+     * @param runId The ID of the run.
+     * @return The DeletedRunSyncEntity object, or null if not found.
+     */
+    @Query("SELECT * FROM DeletedRunSyncEntity WHERE runId = :runId")
+    suspend fun getDeletedRunSyncEntity(runId: String): DeletedRunSyncEntity?
 
-	@Query("DELETE FROM DeletedRunSyncEntity WHERE runId = :runId")
-	suspend fun deleteDeletedRunSyncEntity(runId: String)
+    /**
+     * Inserts or updates a deleted run sync entity.
+     *
+     * @param deletedRunSyncEntity The DeletedRunSyncEntity object to be upserted.
+     */
+    @Upsert
+    suspend fun upsertDeletedRunSyncEntity(deletedRunSyncEntity: DeletedRunSyncEntity)
+
+    /**
+     * Deletes a specific deleted run sync entity by run ID.
+     *
+     * @param runId The ID of the run.
+     */
+    @Query("DELETE FROM DeletedRunSyncEntity WHERE runId = :runId")
+    suspend fun deleteDeletedRunSyncEntity(runId: String)
 }

@@ -84,7 +84,7 @@ fun RegisterScreen(
 ) {
 	GradientBackground {
 		Column(
-			modifier = Modifier
+			modifier = modifier
 				.verticalScroll(state = rememberScrollState())
 				.fillMaxSize()
 				.padding(horizontal = 16.dp, vertical = 32.dp)
