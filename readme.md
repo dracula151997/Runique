@@ -384,3 +384,51 @@ emit.
 - **Use it** when you need to hold onto the latest value and provide it immediately to new
   collectors, especially for UI state management, sharing data across collectors, and preventing
   redundant operations.
+
+Here’s a concise recap of the key calculations and units of measurement for developing an Android app for runners:
+
+### Essential Calculations
+
+1. **Distance Calculation**
+    - **Formula:** \( \text{Distance} = \text{Speed} \times \text{Time} \)
+    - **Units:** Kilometers (km) or Miles (mi)
+
+2. **Pace Calculation**
+    - **Formula:** \( \text{Pace} = \frac{\text{Time}}{\text{Distance}} \)
+    - **Units:** Minutes per kilometer (min/km) or Minutes per mile (min/mi)
+
+3. **Calories Burned Calculation**
+    - **Formula:** \( \text{Calories} = \text{Distance (miles)} \times \text{Weight (lbs)} \times \text{Calories Burned per Mile per Pound} \)
+    - **Units:** Calories (kcal)
+
+4. **Elevation Gain Calculation**
+    - **Details:** Sum the total vertical distance gained during the run, using GPS or an altimeter.
+    - **Units:** Meters (m) or Feet (ft)
+
+5. **Heart Rate Zones Calculation**
+    - **Formula:** \( \text{Max Heart Rate} = 220 - \text{Age} \)
+    - **Units:** Beats per minute (bpm)
+    - **Zones:** Various ranges (resting, fat burning, aerobic, anaerobic, max effort)
+
+6. **Average Speed Calculation**
+    - **Formula:** \( \text{Average Speed} = \frac{\text{Total Distance}}{\text{Total Time}} \)
+    - **Units:** Kilometers per hour (km/h) or Miles per hour (mph)
+
+### Units of Measurement
+
+- **Distance:** Kilometers (km) or Miles (mi)
+- **Pace:** Minutes per kilometer (min/km) or Minutes per mile (min/mi)
+- **Speed:** Kilometers per hour (km/h) or Miles per hour (mph)
+- **Weight:** Kilograms (kg) or Pounds (lbs)
+- **Calories:** Calories (kcal)
+- **Heart Rate:** Beats per minute (bpm)
+- **Elevation:** Meters (m) or Feet (ft)
+
+### Implementation Considerations
+
+- **Data Tracking:** Use GPS and sensors to collect accurate data during runs.
+- **User Profiles:** Allow users to input personal information for personalized metrics.
+- **Feedback Mechanism:** Provide users with insights based on their performance metrics.
+- **History Tracking:** Enable tracking of historical data to visualize progress over time.
+
+This summary encapsulates the essential calculations and considerations for creating a running app, setting you up for a successful implementation! If you need more details on any specific point, just let me know!

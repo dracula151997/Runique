@@ -111,6 +111,11 @@ private fun AnalyticsDashboardScreen(
 					AnalyticsCard(
 						title = stringResource(R.string.avg_pace),
 						value = state.avgPace,
+						modifier = Modifier.weight(1f)
+					)
+					Spacer(Modifier.width(16.dp))
+					Box(
+						modifier = Modifier.weight(1f)
 					)
 				}
 			}

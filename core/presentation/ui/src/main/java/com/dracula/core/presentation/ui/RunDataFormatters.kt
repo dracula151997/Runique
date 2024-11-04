@@ -37,6 +37,12 @@ fun Duration.toFormattedPace(distanceKm: Double): String {
 	return "$avgPaceMinutes:$avgPaceSeconds min/km"
 }
 
+/**
+ * Extension function to format a `Double` value representing kilometers to a string with one decimal place.
+ *
+ * @receiver Double The distance in kilometers to be formatted.
+ * @return String A string representing the distance in kilometers with one decimal place.
+ */
 fun Double.toFormattedKm(): String {
 	return "${this.roundToDecimals(1)} km"
 }
@@ -45,8 +51,14 @@ fun Int.toFormattedMeters(): String {
 	return "$this m"
 }
 
+/**
+ * Extension function to format a `Double` value representing speed in kilometers per hour to a string with one decimal place.
+ *
+ * @receiver Double The speed in kilometers per hour to be formatted.
+ * @return String A string representing the speed in kilometers per hour with one decimal place.
+ */
 fun Double.toFormattedKmh(): String {
-	return "${roundToDecimals(1)} km/h"
+    return "${roundToDecimals(1)} km/h"
 }
 
 private fun Double.roundToDecimals(decimalCount: Int): Double {

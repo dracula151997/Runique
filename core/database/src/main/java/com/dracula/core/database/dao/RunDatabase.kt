@@ -13,6 +13,7 @@ import com.dracula.core.database.entity.RunPendingSyncEntity
 abstract class RunDatabase : RoomDatabase() {
 	abstract val runDao: RunDao
 	abstract val runPendingSyncDao: RunPendingSyncDao
+	abstract val analyticsDao: AnalyticsDao
 
 	companion object {
 		const val DATABASE_NAME = "run_db"
