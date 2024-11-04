@@ -83,12 +83,6 @@ dependencies {
 	implementation(projects.run.data)
 	implementation(projects.run.location)
 	implementation(projects.run.network)
-	implementation(projects.analytics.presentation)
-	implementation(projects.analytics.domain)
-	implementation(projects.analytics.data)
-	implementation(projects.analytics.analyticsFeature)
-
-
 
 
 	coreLibraryDesugaring(libs.desugar.jdk.libs)

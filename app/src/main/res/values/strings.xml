@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Runique</string>
     <string name="title_analytics_feature">Analytics</string>
+    <string name="failed_to_install_analytics_feature">Failed to install analytics feature</string>
+    <string name="analytics_feature_installed">Analytics feature installed</string>
+    <string name="installing_analytics_feature">Installing analytics feature...</string>
 </resources>

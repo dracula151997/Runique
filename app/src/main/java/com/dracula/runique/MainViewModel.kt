@@ -1,6 +1,5 @@
 package com.dracula.runique
 
-import android.view.View
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,8 +9,8 @@ import com.dracula.core.domain.SessionStorage
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-	private val sessionStorage: SessionStorage
-) : ViewModel(){
+	private val sessionStorage: SessionStorage,
+) : ViewModel() {
 	var state by mutableStateOf(MainState())
 		private set
 
@@ -21,6 +20,10 @@ class MainViewModel(
 			state = state.copy(isLoggedIn = sessionStorage.get() != null)
 			state = state.copy(isCheckingAuth = false)
 		}
+	}
+
+	fun setAnalyticsInstallDialogVisibility(visible: Boolean) {
+		state = state.copy(showAnalyticsInstallDialog = visible)
 	}
 
 }

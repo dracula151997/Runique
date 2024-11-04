@@ -20,13 +20,14 @@ import com.dracula.run.presentation.run_overview.RunOverviewScreenRoot
 fun NavigationRoot(
 	navController: NavHostController,
 	isLoggedIn: Boolean,
+	onAnalyticsClick: () -> Unit,
 ) {
 	NavHost(
 		navController = navController,
 		startDestination = if (isLoggedIn) NavigationScreen.RUN_GRAPH else NavigationScreen.AUTH_GRAPH
 	) {
 		authGraph(navController = navController)
-		runGraph(navController = navController)
+		runGraph(navController = navController, onAnalyticsClick = onAnalyticsClick)
 	}
 }
 
@@ -95,6 +96,7 @@ private fun NavGraphBuilder.authGraph(
 
 private fun NavGraphBuilder.runGraph(
 	navController: NavHostController,
+	onAnalyticsClick: () -> Unit,
 ) {
 
 	navigation(
@@ -106,6 +108,7 @@ private fun NavGraphBuilder.runGraph(
 				onStartClick = {
 					navController.navigate(NavigationScreen.Run.ACTIVE_RUN)
 				},
+				onAnalyticsClick = onAnalyticsClick,
 				onLogoutClick = {
 					navController.navigate(NavigationScreen.AUTH_GRAPH) {
 						popUpTo(NavigationScreen.RUN_GRAPH) {

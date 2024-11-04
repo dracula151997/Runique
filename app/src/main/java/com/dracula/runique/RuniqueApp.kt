@@ -1,7 +1,7 @@
 package com.dracula.runique
 
 import android.app.Application
-import com.dracula.analytics.data.di.analyticsDataModule
+import android.content.Context
 import com.dracula.auth.data.authDataModule
 import com.dracula.auth.presentation.di.authViewModelModule
 import com.dracula.core.database.databaseModule
@@ -11,6 +11,7 @@ import com.dracula.run.location.di.locationModule
 import com.dracula.run.network.di.networkModule
 import com.dracula.run.presentation.di.runPresentationModule
 import com.dracula.runique.di.appModule
+import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
@@ -41,8 +42,12 @@ class RuniqueApp : Application(){
 				coreDataModule,
 				networkModule,
 				runDataModule,
-				analyticsDataModule
 			)
 		}
+	}
+
+	override fun attachBaseContext(base: Context?) {
+		super.attachBaseContext(base)
+		SplitCompat.install(this)
 	}
 }
