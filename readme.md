@@ -28,6 +28,17 @@ Runique is built using the following technologies:
 
 ## Screenshots
 
+<table>
+  <tr>
+    <td>
+      <img src="intro.png" alt="Auth Feature" width="500"/>
+    </td>
+    <td>
+      <img src="login.png" alt="Phone Watch Mockup" width="300"/>
+    </td>
+  </tr>
+</table>
+
 ![Intro](intro.png) ![Login](login.png)
 
 ![Sign-up](sign-up.png)
