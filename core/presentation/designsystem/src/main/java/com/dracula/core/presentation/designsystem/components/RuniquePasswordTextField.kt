@@ -1,6 +1,5 @@
 package com.dracula.core.presentation.designsystem.components
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -13,10 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text2.BasicSecureTextField
-import androidx.compose.foundation.text2.input.TextFieldState
-import androidx.compose.foundation.text2.input.TextObfuscationMode
-import androidx.compose.foundation.text2.input.rememberTextFieldState
+import androidx.compose.foundation.text.BasicSecureTextField
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.TextObfuscationMode
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
@@ -33,7 +32,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dracula.core.presentation.designsystem.EyeClosedIcon
@@ -41,7 +39,6 @@ import com.dracula.core.presentation.designsystem.EyeOpenedIcon
 import com.dracula.core.presentation.designsystem.LockIcon
 import com.dracula.core.presentation.designsystem.RuniqueTheme
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RuniquePasswordTextField(
 	state: TextFieldState,
@@ -92,7 +89,6 @@ fun RuniquePasswordTextField(
 			textStyle = LocalTextStyle.current.copy(
 				color = MaterialTheme.colorScheme.onBackground,
 			),
-			keyboardType = KeyboardType.Password,
 			cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
 			textObfuscationMode = if (isPasswordVisible) TextObfuscationMode.Visible else TextObfuscationMode.Hidden,
 			decorator = { innerBox ->
@@ -138,7 +134,6 @@ fun RuniquePasswordTextField(
 	}
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 private fun RuniqueTextFieldPreview() {

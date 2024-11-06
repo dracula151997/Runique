@@ -100,7 +100,7 @@ class ActiveRunService : Service() {
 	private fun createNotificationChannel() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			val name = getString(R.string.active_run)
-			val importance = NotificationManager.IMPORTANCE_DEFAULT
+			val importance = NotificationManager.IMPORTANCE_LOW
 			val channel = android.app.NotificationChannel(CHANNEL_ID, name, importance)
 			notificationManager.createNotificationChannel(channel)
 		}

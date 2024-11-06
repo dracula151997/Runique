@@ -5,6 +5,7 @@ import com.dracula.convention.configureBuildTypes
 import com.dracula.convention.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.kotlin
@@ -15,6 +16,7 @@ class AndroidDynamicFeatureConventionPlugin : Plugin<Project> {
 			pluginManager.run {
 				apply("com.android.dynamic-feature")
 				apply("org.jetbrains.kotlin.android")
+				apply("org.jetbrains.kotlin.plugin.compose")
 			}
 
 			extensions.configure<DynamicFeatureExtension> {

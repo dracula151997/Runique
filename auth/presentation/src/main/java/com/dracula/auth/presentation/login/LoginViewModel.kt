@@ -1,7 +1,6 @@
 package com.dracula.auth.presentation.login
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.text2.input.textAsFlow
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -20,7 +19,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class)
 class LoginViewModel(
 	private val authRepository: AuthRepository,
 	private val userDataValidator: UserDataValidator,

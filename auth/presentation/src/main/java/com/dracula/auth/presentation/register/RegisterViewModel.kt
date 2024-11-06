@@ -1,7 +1,6 @@
 package com.dracula.auth.presentation.register
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.text2.input.textAsFlow
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.dracula.auth.domain.AuthRepository
 import com.dracula.auth.domain.UserDataValidator
 import com.dracula.auth.presentation.R
+import com.dracula.auth.presentation.login.textAsFlow
 import com.dracula.core.domain.utils.DataError
 import com.dracula.core.domain.utils.Result
 import com.dracula.core.presentation.ui.UiText

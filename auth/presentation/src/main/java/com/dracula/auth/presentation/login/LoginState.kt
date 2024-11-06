@@ -1,10 +1,10 @@
 package com.dracula.auth.presentation.login
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.text2.input.TextFieldState
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.runtime.snapshotFlow
+import kotlinx.coroutines.flow.Flow
 
 
-@OptIn(ExperimentalFoundationApi::class)
 data class LoginState(
 	val email: TextFieldState = TextFieldState(),
 	val password: TextFieldState = TextFieldState(),
@@ -12,3 +12,7 @@ data class LoginState(
 	val canLogin: Boolean = false,
 	val isLoggingIn: Boolean = false,
 )
+
+fun TextFieldState.textAsFlow(): Flow<CharSequence>{
+	return snapshotFlow { text }
+}
