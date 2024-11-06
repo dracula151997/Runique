@@ -62,9 +62,8 @@ Runique is built using the following technologies:
 ## Installation
 
 To install Runique, follow these steps:
-- Download the apk <a href="analytics_feature-debug.apk" download>Click to Download</a>
-1. Clone the repository
-2. Open the project in Android Studio
-3. Build and run the project
-4. Enjoy!
+
+1. Download the apk <a href="analytics_feature-debug.apk" download>Click to Download</a>
+2. Install the app
+3. Enjoy!
 
