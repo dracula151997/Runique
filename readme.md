@@ -67,8 +67,3 @@ To get started with Runique:
 1. [Download the APK](analytics_feature-debug.apk)
 2. Install the app on your device.
 3. Start tracking and analyzing your runs!
-
----
-
-This version clarifies and enhances readability, ensures consistent styling, and makes the tone more
-engaging while maintaining all key information.
