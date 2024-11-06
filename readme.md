@@ -36,26 +36,26 @@ Below are screenshots of various app screens for reference:
 <table>
   <tr>
     <td>
-      <img src="intro.png" alt="Intro" width="400"/>
+      <img src="screenshots/intro.png" alt="Intro" width="400"/>
     </td>
     <td>
-      <img src="login.png" alt="Login" width="400"/>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <img src="sign-up.png" alt="Sign Up" width="400"/>
-    </td>
-    <td>
-      <img src="run_overview.png" alt="Run Overview" width="400"/>
+      <img src="screenshots/login.png" alt="Login" width="400"/>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="run.png" alt="Run" width="400"/>
+      <img src="screenshots/sign-up.png" alt="Sign Up" width="400"/>
     </td>
     <td>
-      <img src="analytics.png" alt="Analytics" width="400"/>
+      <img src="screenshots/run_overview.png" alt="Run Overview" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="screenshots/run.png" alt="Run" width="400"/>
+    </td>
+    <td>
+      <img src="screenshots/analytics.png" alt="Analytics" width="400"/>
     </td>
   </tr>
 </table>
