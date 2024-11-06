@@ -18,6 +18,7 @@ Runique is built using the following technologies:
 - Google Maps SDK
 
 ## Features
+
 - Authentication (Login/Sign-up)
 - Offline-first development
 - Track your runs
@@ -43,18 +44,20 @@ Runique is built using the following technologies:
       <img src="sign-up.png" alt="Sign up" width="500"/>
     </td>
     <td>
-      <img src="run_overview.png" alt="Phone Watch Mockup" width="500"/>
+      <img src="run_overview.png" alt="Run Overview" width="500"/>
+    </td>
+  </tr>
+
+ <tr>
+    <td>
+      <img src="run.png" alt="Run" width="500"/>
+    </td>
+    <td>
+      <img src="analytics.png" alt="Analytics" width="500"/>
     </td>
   </tr>
 
 </table>
-
-
-![RunOverview](run_overview.png)
-
-![Run](run.png)
-
-![Analytics](analytics.png)
 
 ## Installation
 
