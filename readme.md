@@ -28,9 +28,7 @@ Runique is built using the following technologies:
 
 ## Screenshots
 
-![Intro](intro.png)
-
-![Login](login.png)
+![Intro](intro.png) ![Login](login.png)
 
 ![Sign-up](sign-up.png)
 
