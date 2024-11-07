@@ -38,10 +38,10 @@ Below are screenshots of various app screens for reference:
 <table>
   <tr>
     <td>
-      <img src="screenshots/intro.png" alt="Intro" width="400"/>
+      <img src="screenshots/intro.png" alt="Intro" width="1008"/>
     </td>
     <td>
-      <img src="screenshots/login.png" alt="Login" width="400"/>
+      <img src="screenshots/login.png" alt="Login" width="1008"/>
     </td>
   </tr>
   <tr>
