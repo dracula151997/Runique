@@ -17,6 +17,8 @@ Runique leverages modern Android development tools and libraries, including:
 - **Koin**: Dependency injection framework for modularization and flexibility.
 - **Ktor**: Networking framework for API calls.
 - **Google Maps SDK**: To display and track runs on a map.
+- **Dynamic Feature Modules**: For on-demand feature delivery.
+- **WorkManager**: For syncing and background tasks.
 
 ## Key Features
 
@@ -27,7 +29,7 @@ Runique leverages modern Android development tools and libraries, including:
 - **Run History**: View past runs with detailed information.
 - **Detailed Run Information**: Analyze metrics such as distance, time, pace, and more.
 - **Map Integration**: See your runs plotted on a map.
-- **Run Statistics**: Access analytics to measure and improve your performance.
+- **Run Statistics**: Access analytics to measure and improve your performance."
 
 ## Screenshots
 
